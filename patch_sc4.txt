@@ -1,0 +1,55 @@
+--- ladspa-master/sc4_1882.xml	2020-07-30 15:46:02.000000000 +0530
++++ /home/sammer/ladspa-master/sc4_1882.xml	2020-09-16 06:38:45.608289292 +0530
+@@ -25,6 +25,8 @@
+ 
+       rms = rms_env_new();
+       sum = 0.0f;
++      sum_l = 0.0f;
++      sum_r = 0.0f;
+       amp = 0.0f;
+       gain = 0.0f;
+       gain_t = 0.0f;
+@@ -64,6 +66,8 @@
+ 	const float ra = fabs(right_in[pos]);
+ 	const float lev_in = f_max(la, ra);
+         sum += lev_in * lev_in;
++        sum_l += la * la;
++        sum_r =+ ra * ra;
+ 
+         if (amp > env_rms) {
+           env_rms = env_rms * ga + amp * (1.0f - ga);
+@@ -74,12 +78,14 @@
+         if (lev_in > env_peak) {
+           env_peak = env_peak * ga + lev_in * (1.0f - ga);
+         } else {
+-          env_peak = env_peak * gr + lev_in * (1.0f - gr);
++          env_peak = env_peak * gr + (la+ra) * 0.5f * (1.0f - gr);
+         }
+ 	round_to_zero(&env_peak);
+         if ((count++ & 3) == 3) {
+-          amp = rms_env_process(rms, sum * 0.25f);
++          amp = rms_env_process(rms, (sum_l+sum_r) * 0.125f);
+           sum = 0.0f;
++          sum_l = 0.0f;
++          sum_r = 0.0f;
+ 	  if (isnan(env_rms)) {
+ 	    // This can happen sometimes, but I don't know why
+ 	    env_rms = 0.0f;
+@@ -159,7 +165,7 @@
+     <port label="amplitude" dir="output" type="control">
+       <name>Amplitude (dB)</name>
+       <p>The level of the input signal, in decibels.</p>
+-      <range min="-40" max="+12"/>
++      <range min="-120" max="+22"/>
+     </port>
+ 
+     <port label="gain_red" dir="output" type="control">
+@@ -188,6 +194,8 @@
+     <instance-data label="as" type="float *" />
+ 
+     <instance-data label="sum" type="float" />
++    <instance-data label="sum_l" type="float" />
++    <instance-data label="sum_r" type="float" />
+     <instance-data label="amp" type="float" />
+     <instance-data label="gain" type="float" />
+     <instance-data label="gain_t" type="float" />
