@@ -27,7 +27,7 @@ load-module module-alsa-sink device=default sink_name=output
 
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=combined control=0,2,650,-30,2,6,7 &#12288;
+load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=output control=0,2,650,-30,2,6,7 &#12288;
 
 
 
