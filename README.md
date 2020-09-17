@@ -16,14 +16,31 @@ Copy the modified sc4_1882.so file to /usr/lib/ladspa or to /usr/local/lib/ladsp
 Then in default.pa Pulseaudio config file, chained 2 modified sc4_1882.so compressors one with Peak, 2nd with RMS.
 
 load-module module-alsa-sink device=default sink_name=output
-load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=combined control=0,2,650,-30,2,6,7
-load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-27,2,6,7
+
+
+
+
+load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=combined control=0,2,650,-30,2,6,7 &#12288;
+
+
+
+
+load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-27,2,6,7 &#12288;
+
+
+
+
 ...
+
 set-default-sink ladspa_output.sc4
 
+
 Restart pulseaudio with
+
 pulseaudio --kill
+
 pulseaudio --start
+
 
 If pulseaudio is in system mode you will need sudo privileges to restart pulseaudio.
 
