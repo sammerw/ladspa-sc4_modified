@@ -5,15 +5,22 @@ This is a modified patch for the swh-plugins of LADSPA, specifically the sc4_188
 Download the source of swh-plugins and apply the patch_sc4.txt to the sc4_1882.xml file.
 
 Here is command to patch:
+
 patch sc4_1882.xml < patch_sc4.txt
+
 
 Then rebuild the sc4, by typing make.
 
+
 The generated sc4_1882.so will be in .libs folder.
+
 
 Copy the modified sc4_1882.so file to /usr/lib/ladspa or to /usr/local/lib/ladspa
 
+
 Then in default.pa Pulseaudio config file, chained 2 modified sc4_1882.so compressors one with Peak, 2nd with RMS.
+
+
 
 load-module module-alsa-sink device=default sink_name=output
 
