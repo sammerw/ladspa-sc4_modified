@@ -2,6 +2,9 @@
 
 
 This is a modified patch for the swh-plugins of LADSPA, specifically the sc4_1882 compressor.
+
+The aim of modding the sc4 compressor is to bring forth the stereo effect more clearly than, say, a stereo multiplier or widener would.
+
 Download the source of swh-plugins and apply the patch_sc4.txt to the sc4_1882.xml file.
 
 Here is command to patch:
@@ -27,12 +30,12 @@ load-module module-alsa-sink device=default sink_name=output
 
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=output control=0,2,650,-30,2,6,7 &#12288;
+load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=output control=0,2,650,-30,1,6,0 &#12288;
 
 
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-27,2,6,7 &#12288;
+load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-27,1,6,0 &#12288;
 
 
 
@@ -63,16 +66,16 @@ Additionally, the above chain of compressors can be "double chained" like this t
 load-module module-alsa-sink device=default sink_name=output
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc44 label=sc4 plugin=sc4_1882 master=output control=0,2,650,-30,2,6,7
+load-module module-ladspa-sink sink_name=ladspa_output.sc44 label=sc4 plugin=sc4_1882 master=output control=0,2,650,-30,1,7,0
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc43 label=sc4 plugin=sc4_1882 master=ladspa_output.sc44 control=1,180,350,-26.67,2,6,7
+load-module module-ladspa-sink sink_name=ladspa_output.sc43 label=sc4 plugin=sc4_1882 master=ladspa_output.sc44 control=1,180,350,-26.67,1,7,0
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=ladspa_output.sc43 control=0,2,650,-30,2,6,7
+load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=ladspa_output.sc43 control=0,2,650,-30,2,7,0
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-26.67,2,6,7
+load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-26.67,2,7,0
 
 
 ....
