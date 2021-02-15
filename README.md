@@ -3,7 +3,7 @@
 
 This is a modified patch for the swh-plugins of LADSPA, specifically the sc4_1882 compressor.
 
-The aim of modding the sc4 compressor is to bring forth the stereo effect more clearly than, say, a stereo multiplier or widener would.
+The aim of modding the sc4 compressor is to bring forth the stereo effect more clearly than, say, a stereo width or widener would.
 
 Download the source of swh-plugins and apply the patch_sc4.txt to the sc4_1882.xml file.
 
