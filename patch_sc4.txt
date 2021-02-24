@@ -1,5 +1,5 @@
---- ladspa-master/sc4_1882.xml	2020-07-30 15:46:02.000000000 +0530
-+++ /home/sammer/ladspa-master/sc4_1882.xml	2020-09-16 06:38:45.608289292 +0530
+--- ladspa-0.4.17/sc4_1882.xml	2016-10-17 14:35:54.000000000 +0530
++++ /home/sammer/ladspa-0.4.17/sc4_1882.xml	2021-02-24 10:13:09.020519479 +0530
 @@ -25,6 +25,8 @@
  
        rms = rms_env_new();
@@ -35,6 +35,24 @@
  	  if (isnan(env_rms)) {
  	    // This can happen sometimes, but I don't know why
  	    env_rms = 0.0f;
+@@ -135,7 +141,7 @@
+     <port label="threshold" dir="input" type="control" hint="default_maximum">
+       <name>Threshold level (dB)</name>
+       <p>The point at which the compressor will start to kick in.</p>
+-      <range min="-30" max="0"/>
++      <range min="-60" max="0"/>
+     </port>
+ 
+     <port label="ratio" dir="input" type="control" hint="default_1">
+@@ -147,7 +153,7 @@
+     <port label="knee" dir="input" type="control" hint="default_low">
+       <name>Knee radius (dB)</name>
+       <p>The distance from the threshold where the knee curve starts.</p>
+-      <range min="1" max="10"/>
++      <range min="1" max="20"/>
+     </port>
+ 
+     <port label="makeup_gain" dir="input" type="control" hint="default_0">
 @@ -159,7 +165,7 @@
      <port label="amplitude" dir="output" type="control">
        <name>Amplitude (dB)</name>
