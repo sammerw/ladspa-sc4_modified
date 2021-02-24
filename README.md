@@ -30,12 +30,12 @@ load-module module-alsa-sink device=default sink_name=output
 
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=output control=0,2,650,-30,1,6,0 &#12288;
+load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=output control=0,2,650,-30,1.4,6,0 &#12288;
 
 
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-27,1,6,0 &#12288;
+load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-27,1.4,6,0 &#12288;
 
 
 
@@ -66,16 +66,16 @@ Additionally, the above chain of compressors can be "double chained" like this t
 load-module module-alsa-sink device=default sink_name=output
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc44 label=sc4 plugin=sc4_1882 master=output control=0,2,650,-30,1,7,0
+load-module module-ladspa-sink sink_name=ladspa_output.sc44 label=sc4 plugin=sc4_1882 master=output control=0,2,650,-30,1.4,7,0
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc43 label=sc4 plugin=sc4_1882 master=ladspa_output.sc44 control=1,180,350,-26.67,1,7,0
+load-module module-ladspa-sink sink_name=ladspa_output.sc43 label=sc4 plugin=sc4_1882 master=ladspa_output.sc44 control=1,180,350,-26.67,1.4,7,0
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=ladspa_output.sc43 control=0,2,650,-30,2,7,0
+load-module module-ladspa-sink sink_name=ladspa_output.sc42 label=sc4 plugin=sc4_1882 master=ladspa_output.sc43 control=0,2,650,-30,1.4,7,0
 
 
-load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-26.67,2,7,0
+load-module module-ladspa-sink sink_name=ladspa_output.sc4 label=sc4 plugin=sc4_1882 master=ladspa_output.sc42 control=1,180,350,-26.67,1.4,7,0
 
 
 ....
